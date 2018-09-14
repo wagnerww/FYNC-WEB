@@ -8,15 +8,29 @@ import { StatusEsporte } from '../../enums/status-esporte.enum';
 })
 export class CadastroEsportesComponent implements OnInit {
 
-  statusEsporte:string[];
+  statusEsporte = StatusEsporte;
   
-  constructor() { }
+  //keys:string[];
+  
+  
+  constructor() { 
+   
+  }
 
   ngOnInit() {
-    var options = Object.keys(StatusEsporte);
-    this.statusEsporte = options.slice(options.length / 2);
-    console.log('esportes', this.statusEsporte);  
-    
+    let statusEsporte = this.transform(StatusEsporte);
+  }
+
+  transform(value) : any {
+    let keys = [];
+    for (var enumMember in value) {
+      var isValueProperty = parseInt(enumMember, 10) >= 0
+      if (isValueProperty) {
+        keys.push({value: enumMember, description: value[enumMember]});        
+      } 
+    }
+    console.log(keys);
+    return keys;
   }
 
 }

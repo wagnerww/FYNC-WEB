@@ -12,6 +12,8 @@ import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuari
 import { UsuariosService } from './services/Usuarios.service';
 import { EsportesService } from './services/esportes.service';
 import { CadastroEsportesComponent } from './components/cadastro-esportes/cadastro-esportes.component';
+import { RadioButtonComponent } from './components/Forms-shared/radio-button/radio-button.component';
+import { EnumTransformPipe } from './pipes/enum-transform.pipe';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { CadastroEsportesComponent } from './components/cadastro-esportes/cadast
     HeaderMenuComponent,
     FooterComponent,
     ListaUsuariosComponent,
-    CadastroEsportesComponent
+    CadastroEsportesComponent,
+    RadioButtonComponent,
+    EnumTransformPipe
   
   ],
   imports: [

@@ -1,15 +1,24 @@
+{{Form.value | json}}
+
 <form #Form="ngForm" novalidate>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="exampleInputEmail1">Esporte</label>
-      <input type="text" class="form-control" name="EspDescricao" required ngMode>
-    </div>
+      <input type="text" class="form-control" name="EspDescricao" required ngModel>
+    </div>   
     <div class="form-group col-md-6">
         <label for="exampleInputEmail1">Status</label>
-        <div class="custom-control custom-radio" *ngFor="let status of statusEsporte">          
-            <input name="EspStatus" type="radio" name="customRadio" class="custom-control-input" [value]="1"  [(ngModel)]="EspStatus">
-            <label class="custom-control-label">{{status}}</label>
-          </div>
+      <div class="custom-control custom-radio" *ngFor="let option of statusEsporte | enumTransform">
+          <input type="radio" id="opt_{{option.value}}" name="EspStatus"
+            value="{{option.value}}" class="custom-control-input" ngModel>
+          <label class="custom-control-label" for="opt_{{option.value}}">{{option.description}}</label>
+      </div>
+      <!--<label for="exampleInputEmail1">Status</label>
+      <select class="custom-select" name="EspStatus" required ngModel>
+        <option selected>Open this select menu</option>
+        <option *ngFor="let option of statusEsporte | enumTransform" 
+          value="{{option.value}}">{{option.description}}</option>        
+      </select>  -->
     </div>
   </div>
 </form>
