@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {ROUTES} from './app.router';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {Observable} from 'rxjs';
 
 import { AppComponent } from './app.component';
 import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
@@ -14,6 +15,9 @@ import { EsportesService } from './services/esportes.service';
 import { CadastroEsportesComponent } from './components/cadastro-esportes/cadastro-esportes.component';
 import { RadioButtonComponent } from './components/Forms-shared/radio-button/radio-button.component';
 import { EnumTransformPipe } from './pipes/enum-transform.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { SocialLoginModule, AuthServiceConfig} from "angular5-social-login";
+import { LoginSocialService } from './services/login/login-social.service';
 
 
 @NgModule({
@@ -24,16 +28,22 @@ import { EnumTransformPipe } from './pipes/enum-transform.pipe';
     ListaUsuariosComponent,
     CadastroEsportesComponent,
     RadioButtonComponent,
-    EnumTransformPipe
+    EnumTransformPipe,
+    LoginComponent
   
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SocialLoginModule
   ],
-  providers: [UsuariosService, EsportesService],
+  providers: [ UsuariosService, EsportesService,
+    {
+      provide:AuthServiceConfig,
+      useFactory: LoginSocialService
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
